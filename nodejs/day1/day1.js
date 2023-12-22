@@ -1,23 +1,23 @@
-const fs = require('fs');
+import fs from 'fs';
 
-const text = fs.readFileSync('test.txt').toString().split('\n');
+function trebuchet(fileInput) {
+  let digits = [];
+  let sum = 0;
 
-let digits = [];
-let sum = 0;
+  const text = fs.readFileSync(fileInput).toString().split("\n");
 
-function trebuchet(textData) {
-    for (let i = 0; i < text.length; i++) {
-        const firstDigit = text[i].match(/\d/);
-        const lastDigit = text[i].match(/\d(?=[^\d]*$)/);
+  for (let i = 0; i < text.length; i++) {
+    const firstDigit = text[i].match(/\d/);
+    const lastDigit = text[i].match(/\d(?=[^\d]*$)/);
 
-        digits.push(parseInt(firstDigit + lastDigit));
-    }
+    digits.push(parseInt(firstDigit + lastDigit));
+  }
 
-    digits.forEach( num => {
-        sum += num;
-    })
+  digits.forEach((num) => {
+    sum += num;
+  });
 
-    return sum;
+  return sum;
 }
 
-module.exports = trebuchet;
+export default trebuchet;
